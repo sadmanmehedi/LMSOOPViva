@@ -76,15 +76,25 @@ admin = Admin("admin", "admin")
 
 
 print("Hello There!")
-print("Login As?")
+print("Login As(Give the number)?")
 print("1.Admin 2.Librarian 3.User")
 user = int(input())
 
 if user == 1:
-    pass
+    print("Input your Email")
+    email=input()
+    print("Input your Password")
+    password=input()
+
 
 elif user == 2:
-    pass
+    print("Input your Email")
+    email = input()
+    print("Input your Password")
+    password = input()
 
 else:
-    pass
+    print("Input your Email")
+    email = input()
+    print("Input your Password")
+    password = input()
