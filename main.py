@@ -2,41 +2,89 @@ librarians = []
 books = []
 users = []
 
-#...........................................................................
+# =========================================================================
+
 class Person():
-    def __init__(self,username):
-        self.username=username
+    def __init__(self, username,password):
+        self.username = username
+        self.password = password
 
-#============================================================================
+
+# ============================================================================
+
 class Admin(Person):
-  def seeLibrarianList(self):
-      pass
-  def addLibrarian(self):
-      pass
-  def removeLibrarian(self):
-      pass
-  def seeBookList(self):
-      pass
-  def addBook(self):
-      pass
-  def removeBook(self):
-      pass
+  def seelibrarianlist(self):
+    print(librarians)
+  def addlibrarian(self):
+    pass
+  def removelibrarian(self):
+    pass
+
+  def seebooklist(self):
+    print(books)
+
+  def addbook(self):
+    pass
+  def removebook(self):
+    pass
 
 
-
-
-#==============================================================================
-
+# ==============================================================================
 
 class Librarian(Person):
-  def changePassword(self):
+  def changepassword(self):
+    pass
+
+  def createnewbook(self):
+    pass
+
+  def readbook(self):
+    print(books)
+
+  def updatebook(self):
+      pass
+
+  def deletebook(self):
+      pass
+
+  def createnewuser(self):
+      pass
+
+  def readuser(self):
+      print(users)
+
+  def updateuser(self):
+      pass
+
+  def deleteuser(self):
       pass
 
 
 # ==============================================================================
 class User(Person):
+
+    def lendbook(self):
+        pass
+
+    def returnbook(self):
+        pass
+
+
+# ==============MAIN FUNCTION=====================================
+
+admin = Admin("admin", "admin")
+
+
+print("Hello There!")
+print("Login As?")
+print("1.Admin 2.Librarian 3.User")
+user = int(input())
+
+if user == 1:
     pass
 
-# ==============================================================================
+elif user == 2:
+    pass
 
-
+else:
+    pass
