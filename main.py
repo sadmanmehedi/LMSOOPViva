@@ -98,19 +98,29 @@ elif user == 2:
     choice=int(input())
     if choice==1:
      print("Input your Username")
-     email = input()
+     username = input()
      print("Input your Password")
      password = input()
+
+
     else:
-        f = open("librarians.txt", "w")
+        print("Input your new Username")
+        username = input()
+        print("Input your new Password")
+        password = input()
+        with open("librarians.txt", "a") as file:
+            file.write(f"{username},{password}\n")
+
 
 else:
     print("What you want?\n 1.Login 2.Register")
     choice = int(input())
     if choice == 1:
         print("Input your Username")
-        email = input()
+        username = input()
         print("Input your Password")
         password = input()
+        with open("users.txt", "a") as file:
+            file.write(f"{username},{password}\n")
     else:
         f = open("users.txt", "w")
