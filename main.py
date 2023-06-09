@@ -81,20 +81,24 @@ print("1.Admin 2.Librarian 3.User")
 user = int(input())
 
 if user == 1:
-    print("Input your Email")
-    email=input()
+    print("Input your Username")
+    email = input()
     print("Input your Password")
-    password=input()
+    password = input()
+    if email == admin.username and password == admin.password:
+        print("Congratulations")
+    else:
+        print("Invalid Credentials")
 
 
 elif user == 2:
-    print("Input your Email")
+    print("Input your Username")
     email = input()
     print("Input your Password")
     password = input()
 
 else:
-    print("Input your Email")
+    print("Input your Username")
     email = input()
     print("Input your Password")
     password = input()
