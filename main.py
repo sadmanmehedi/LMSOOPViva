@@ -102,6 +102,21 @@ elif user == 2:
      username = input()
      print("Input your Password")
      password = input()
+     found = False
+
+     with open("librarians.txt", "r") as file:
+         for line in file:
+             line = line.strip()
+             users, passwords = line.split(",")
+
+             if users == username and passwords == password:
+                 found = True
+                 break
+
+     if found:
+         print("Email and password Matched!")
+     else:
+         print("Wrong Credentials")
 
 
     else:
@@ -123,6 +138,21 @@ else:
         username = input()
         print("Input your Password")
         password = input()
+        found = False
+
+        with open("users.txt", "r") as file:
+            for line in file:
+                line = line.strip()
+                users, passwords = line.split(",")
+
+                if users == username and passwords == password:
+                    found = True
+                    break
+
+        if found:
+            print("Email and password Matched!")
+        else:
+            print("Wrong Credentials")
 
     else:
         print("WELCOME TO USER REGISTRATION")
