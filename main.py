@@ -1,3 +1,5 @@
+from abc import ABC, abstractmethod
+
 librarians = []
 books = []
 users = []
@@ -76,7 +78,7 @@ admin = Admin("admin", "admin")
 
 
 print("Hello There!")
-print("Login As(Give the number)?")
+print("Which Menu to Open(Give the number)?")
 print("1.Admin 2.Librarian 3.User")
 user = int(input())
 
@@ -86,19 +88,29 @@ if user == 1:
     print("Input your Password")
     password = input()
     if email == admin.username and password == admin.password:
-        print("Congratulations")
+        print("Congratulations you have logged in as Admin")
     else:
         print("Invalid Credentials")
 
 
 elif user == 2:
-    print("Input your Username")
-    email = input()
-    print("Input your Password")
-    password = input()
+    print("What you want?\n 1.Login 2.Register")
+    choice=int(input())
+    if choice==1:
+     print("Input your Username")
+     email = input()
+     print("Input your Password")
+     password = input()
+    else:
+        f = open("librarians.txt", "w")
 
 else:
-    print("Input your Username")
-    email = input()
-    print("Input your Password")
-    password = input()
+    print("What you want?\n 1.Login 2.Register")
+    choice = int(input())
+    if choice == 1:
+        print("Input your Username")
+        email = input()
+        print("Input your Password")
+        password = input()
+    else:
+        f = open("users.txt", "w")
