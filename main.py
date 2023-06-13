@@ -38,6 +38,7 @@ class Person():
         print(f"Book '{bookname}' removed successfully.")
 
 
+
 # ============================================================================
 
 class Admin(Person):
@@ -89,30 +90,84 @@ class Librarian(Person):
 
     print("Password changed successfully.")
 
-  def createnewbook(self):
-    pass
-
-  def readbook(self):
-    pass
-
   def updatebook(self):
-      pass
+      print("Input Bookname")
+      book = input()
 
-  def deletebook(self):
-      pass
+      print("Input Price")
+      price = input()
 
-  def createnewuser(self):
-      pass
+      print("Input New Bookname")
+      newbookname = input()
 
-  def readuser(self):
-      print(users)
+      print("Input New Password")
+      newprice = input()
+
+      with open("books.txt", "r") as file:
+          lines = file.readlines()
+
+      with open("books.txt", "w") as file:
+          for line in lines:
+              if line.startswith(book + ","):
+                  line = f"{newbookname},{newprice}\n"
+              file.write(line)
+
+      print("Book has been updated")
+
+  def adduser(self):
+      print("Write User Name")
+      name = input()
+      print("Write PassWord")
+      password = input()
+      with open("users.txt", "a") as file:
+          file.write(f"{name},{password}\n")
+          print("New User added successfully.")
+
+  def seeuserlist(self):
+      with open("users.txt", "r") as file:
+          for line in file:
+              username, password = line.strip().split(",")
+              print(username)
 
   def updateuser(self):
-      pass
+      print("Input Old Username")
+      username = input()
 
-  def deleteuser(self):
-      pass
+      print("Input Old Password")
+      userpassword = input()
 
+      print("Input New Username")
+      newusername = input()
+
+      print("Input New Password")
+      newpassword = input()
+
+      with open("users.txt", "r") as file:
+       lines = file.readlines()
+
+      with open("users.txt", "w") as file:
+        for line in lines:
+            if line.startswith(username + ","):
+                line = f"{newusername},{newpassword}\n"
+            file.write(line)
+
+      print("User has been updated")
+
+
+  def removeuser(self):
+      print("Input the user name")
+      username = input()
+
+      with open("users.txt", "r") as file:
+          lines = file.readlines()
+
+      with open("users.txt", "w") as file:
+          for line in lines:
+              stored_user_name, stored_user_password = line.strip().split(",")
+              if stored_user_name != username:
+                  file.write(line)
+
+      print(f"Book '{username}' removed successfully.")
 
 # ==============================================================================
 class User(Person):
@@ -186,20 +241,29 @@ elif user == 2:
      if found:
          print("Email and password Matched!")
          print("Which Operation You want to perform(Input the Number)")
-         print("1.Change Password\n2.Add Book\n3.See Booklist\n4.Update Any Book\n5.Remove Any Book6.Create "
-               "user\n7.See User List\n8.Update User\n 9.Delete User")
+         print("1.Change Password\n2.Add Book\n3.See Booklist\n4.Update Any Book\n5.Remove Any Book6.ADD "
+               "user\n7.See User List\n8.Update User\n 9.Remove User")
          x=int(input())
          if x == 1:
              librarian.changepassword(username)
          elif x == 2:
               librarian.addbook()
-         elif x==3:
+         elif x == 3:
               librarian.seebooklist()
-         elif x==4:
-               pass;
-         elif x==5:
+         elif x == 4:
+               librarian.updatebook()
+         elif x == 5:
                librarian.removebook()
-
+         elif x == 6:
+               librarian.adduser()
+         elif x == 7:
+               librarian.seeuserlist()
+         elif x == 8:
+               librarian.updateuser()
+         elif x == 9:
+              librarian.removeuser()
+         else:
+              print("Invalid Input")
 
 
 
