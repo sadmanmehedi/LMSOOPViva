@@ -87,16 +87,13 @@ class Librarian(Person):
         print("Password changed successfully.")
 
     def updatebook(self):
-        print("Input Bookname")
+        print("Input the Bookname you want to modify")
         book = input()
-
-        print("Input Price")
-        price = input()
 
         print("Input New Bookname")
         newbookname = input()
 
-        print("Input New Password")
+        print("Input New Price]")
         newprice = input()
 
         with open("books.txt", "r") as file:
@@ -278,7 +275,7 @@ elif users == 2:
         if found:
             print("Email and password Matched!")
             print("Which Operation You want to perform(Input the Number)")
-            print("1.Change Password\n2.Add Book\n3.See Booklist\n4.Update Any Book\n5.Remove Any Book6.ADD "
+            print("1.Change Password\n2.Add Book\n3.See Booklist\n4.Update Any Book\n5.Remove Any Book\n6.ADD "
                   "user\n7.See User List\n8.Update User\n 9.Remove User")
             x = int(input())
             if x == 1:
@@ -316,7 +313,8 @@ elif users == 2:
         password = input()
         with open("librarians.txt", "a") as file:
             file.write(f"{username},{password}\n")
-        librarian = Librarian(username, password)
+        print("Librarian has been created")
+
 
 
 else:
@@ -359,3 +357,4 @@ else:
         password = input()
         with open("users.txt", "a") as file:
             file.write(f"{username},{password}\n")
+        print("User has been created")
