@@ -20,22 +20,26 @@ class Admin(Person):
           for line in file:
               username, password = line.strip().split(",")
               print(username)
-  def addlibrarian(self, name, password):
-      self.name=name
-      self.password=password
+  def addlibrarian(self):
+      print("Write User Name")
+      name = input()
+      print("Write PassWord")
+      password = input()
       with open("librarians.txt", "a") as file:
           file.write(f"{name},{password}\n")
           print("New Librarian added successfully.")
-  def removelibrarian(self,username):
-    with open("librarians.txt", "r") as file:
+  def removelibrarian(self):
+      print("Input the username")
+      username = input()
+      with open("librarians.txt", "r") as file:
         lines = file.readlines()
 
-    with open("librarians.txt", "w") as file:
+      with open("librarians.txt", "w") as file:
         for line in lines:
             if not line.startswith(username + ","):
                 file.write(line)
 
-    print(f"Username '{username}' removed successfully.")
+      print(f"Username '{username}' removed successfully.")
 
   def seebooklist(self):
       with open("books.txt", "r") as file:
@@ -44,9 +48,25 @@ class Admin(Person):
               print(book_name)
 
   def addbook(self):
-    pass
+      book_name = input("Enter the name of the book: ")
+
+      with open("books.txt", "a") as file:
+          file.write(book_name + "\n")
+
+      print("Book added successfully.")
   def removebook(self):
-    pass
+      print("Input the book name")
+      bookname = input()
+
+      with open("books.txt", "r") as file:
+          lines = file.readlines()
+
+      with open("books.txt", "w") as file:
+          for line in lines:
+              if line.strip() != bookname:
+                  file.write(line)
+
+      print(f"Book '{bookname}' removed successfully.")
 
 
 # ==============================================================================
@@ -113,17 +133,17 @@ if user == 1:
         if x == 1:
             admin.seelibrarianlist()
         elif x == 2:
-            print("Write User Name")
-            name = input()
-            print("Write PassWord")
-            password = input()
-            admin.addlibrarian(name, password)
+            admin.addlibrarian()
         elif x == 3:
-            print("Input the username")
-            username=input()
-            admin.removelibrarian(username)
+            admin.removelibrarian()
         elif x == 4:
             admin.seebooklist()
+        elif x == 5:
+            admin.addbook()
+        elif x == 6:
+            admin.removebook()
+        else:
+            print("Wrong Input")
     else:
         print("Invalid Credentials")
 
