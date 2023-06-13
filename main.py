@@ -16,14 +16,32 @@ class Person():
 
 class Admin(Person):
   def seelibrarianlist(self):
-    print(librarians)
-  def addlibrarian(self):
-    pass
-  def removelibrarian(self):
-    pass
+      with open("librarians.txt", "r") as file:
+          for line in file:
+              username, password = line.strip().split(",")
+              print(username)
+  def addlibrarian(self, name, password):
+      self.name=name
+      self.password=password
+      with open("librarians.txt", "a") as file:
+          file.write(f"{name},{password}\n")
+          print("New Librarian added successfully.")
+  def removelibrarian(self,username):
+    with open("librarians.txt", "r") as file:
+        lines = file.readlines()
+
+    with open("librarians.txt", "w") as file:
+        for line in lines:
+            if not line.startswith(username + ","):
+                file.write(line)
+
+    print(f"Username '{username}' removed successfully.")
 
   def seebooklist(self):
-    print(books)
+      with open("books.txt", "r") as file:
+          for line in file:
+              book_name = line.strip()
+              print(book_name)
 
   def addbook(self):
     pass
@@ -89,6 +107,23 @@ if user == 1:
     password = input()
     if email == admin.username and password == admin.password:
         print("Congratulations you have logged in as Admin")
+        print("Input The Number of the operation you want to do")
+        print("1.See Librarian List\n2.Add Librarian\n3.Remove Librarian\n4.See Book List\n5.Add Book\n6.Remove Book\n")
+        x=int(input())
+        if x == 1:
+            admin.seelibrarianlist()
+        elif x == 2:
+            print("Write User Name")
+            name = input()
+            print("Write PassWord")
+            password = input()
+            admin.addlibrarian(name, password)
+        elif x == 3:
+            print("Input the username")
+            username=input()
+            admin.removelibrarian(username)
+        elif x == 4:
+            admin.seebooklist()
     else:
         print("Invalid Credentials")
 
