@@ -1,15 +1,41 @@
 from abc import ABC, abstractmethod
 
-librarians = []
-books = []
-users = []
-
 # =========================================================================
 
 class Person():
     def __init__(self, username, password):
         self.username = username
         self.password = password
+
+    def addbook(self):
+        book_name = input("Enter the name of the book: ")
+        book_price = input("Enter the price of the book: ")
+
+        with open("books.txt", "a") as file:
+            file.write(f"{book_name},{book_price}\n")
+
+        print("Book added successfully.")
+
+    def seebooklist(self):
+        with open("books.txt", "r") as file:
+            for line in file:
+                book_name, book_price = line.strip().split(",")
+                print(f"Book: {book_name} | Price: {book_price}")
+
+    def removebook(self):
+        print("Input the book name")
+        bookname = input()
+
+        with open("books.txt", "r") as file:
+            lines = file.readlines()
+
+        with open("books.txt", "w") as file:
+            for line in lines:
+                stored_book_name, stored_book_price = line.strip().split(",")
+                if stored_book_name != bookname:
+                    file.write(line)
+
+        print(f"Book '{bookname}' removed successfully.")
 
 
 # ============================================================================
@@ -41,45 +67,33 @@ class Admin(Person):
 
       print(f"Username '{username}' removed successfully.")
 
-  def seebooklist(self):
-      with open("books.txt", "r") as file:
-          for line in file:
-              book_name = line.strip()
-              print(book_name)
 
-  def addbook(self):
-      book_name = input("Enter the name of the book: ")
 
-      with open("books.txt", "a") as file:
-          file.write(book_name + "\n")
-
-      print("Book added successfully.")
-  def removebook(self):
-      print("Input the book name")
-      bookname = input()
-
-      with open("books.txt", "r") as file:
-          lines = file.readlines()
-
-      with open("books.txt", "w") as file:
-          for line in lines:
-              if line.strip() != bookname:
-                  file.write(line)
-
-      print(f"Book '{bookname}' removed successfully.")
 
 
 # ==============================================================================
 
 class Librarian(Person):
-  def changepassword(self):
-    pass
+  def changepassword(self,username):
+    print("Input New Password")
+    newpassword = input()
+
+    with open("librarians.txt", "r") as file:
+        lines = file.readlines()
+
+    with open("librarians.txt", "w") as file:
+        for line in lines:
+            if line.startswith(username + ","):
+                line = f"{username},{newpassword}\n"
+            file.write(line)
+
+    print("Password changed successfully.")
 
   def createnewbook(self):
     pass
 
   def readbook(self):
-    print(books)
+    pass
 
   def updatebook(self):
       pass
@@ -113,6 +127,7 @@ class User(Person):
 # ==============MAIN FUNCTION=====================================
 
 admin = Admin("admin", "admin")
+librarian=Librarian("librarian","librarian")
 
 
 print("Hello There!")
@@ -152,7 +167,7 @@ elif user == 2:
     print("What you want?\n 1.Login 2.Register")
     choice = int(input())
     if choice == 1:
-     print("WELCOME TO LIBRARIAN REGISTRATION")
+     print("WELCOME TO LIBRARIAN LOGIN")
      print("Input your Username")
      username = input()
      print("Input your Password")
@@ -170,6 +185,24 @@ elif user == 2:
 
      if found:
          print("Email and password Matched!")
+         print("Which Operation You want to perform(Input the Number)")
+         print("1.Change Password\n2.Add Book\n3.See Booklist\n4.Update Any Book\n5.Remove Any Book6.Create "
+               "user\n7.See User List\n8.Update User\n 9.Delete User")
+         x=int(input())
+         if x == 1:
+             librarian.changepassword(username)
+         elif x == 2:
+              librarian.addbook()
+         elif x==3:
+              librarian.seebooklist()
+         elif x==4:
+               pass;
+         elif x==5:
+               librarian.removebook()
+
+
+
+
      else:
          print("Wrong Credentials")
 
@@ -182,6 +215,7 @@ elif user == 2:
         password = input()
         with open("librarians.txt", "a") as file:
             file.write(f"{username},{password}\n")
+        librarian= Librarian(username,password)
 
 
 else:
