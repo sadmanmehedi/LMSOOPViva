@@ -183,6 +183,7 @@ class User(Person):
 
 admin = Admin("admin", "admin")
 librarian=Librarian("librarian","librarian")
+user=User("user","user")
 
 
 print("Hello There!")
@@ -304,6 +305,8 @@ else:
 
         if found:
             print("Email and password Matched!")
+            print("What Operation Do you want to do?")
+            print("1.Lend Book 2.Give Back Book")
         else:
             print("Wrong Credentials")
 
